@@ -1,0 +1,39 @@
+<header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="index.html">Resi.</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Acceuil</a></li>
+
+          <li><a class="nav-link scrollto" href="#team">Concours</a></li>
+          <li class="dropdown"><a href="#"><span>Etablissement</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+                <li><a href="#">Ecole polytechNique de thies</a></li>
+                <li><a href="#">ENSA</a></li>
+                <li><a href="#">UIT</a></li>
+                <li><a href="#">SI</a></li>
+                <li><a href="#">OTHER</a></li>
+                </ul>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          @if (Route::has('login'))
+
+              @auth
+            <x-app-layout>
+            </x-app-layout>
+              @else
+              <li><a class="getstarted scrollto" href="{{ route('login') }}">Se connecter</a></li>
+                  <li><a class="getstarted scrollto" href="{{ route('register') }}">S'inscrire</a></li>
+              @endauth
+
+      @endif
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
