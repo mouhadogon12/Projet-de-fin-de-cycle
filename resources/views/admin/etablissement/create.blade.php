@@ -28,54 +28,37 @@
 
 
                 <div class="card-header">
-                    <h4 class="mb-0" >Ajouter concours</h4>
+                    <h4 class="mb-0" >Ajouter Etablissement</h4>
                     <div class="text-right" style="margin-top: -25px">
                         <a href="#" class="btn btn-primary " >Back</a>
                     </div>
             <div class="card-body">
-                <form action="{{ route('concours.store') }}" method="post">
+                <form action="{{ route('etablissement.store') }}" method="post">
                     @csrf
                     <div class="mb-2">
-                        <label for="nom">Nom</label>
+                        <label for="nom">Nom de l'etablissement</label>
                         <input type="text" name="nom" class="form-control" id="nom" value="{{ old('nom') }}">
                         @error('nom') <span class="text-danger">{{ $message }}</span>
 
                         @enderror
                     </div>
                     <div class="mb-2">
-                        <label for="etablissement_id">Établissement</label>
-                        <select name="etablissement_id" class="form-control" id="etablissement_id" required>
-                            <option value="">Sélectionnez un établissement</option>
-                            @foreach($etablissements as $etablissement)
-                                <option value="{{ $etablissement->id }}">{{ $etablissement->nom }}</option>
-                            @endforeach
-                        </select>
-                        @error('etablissement_id') <span class="text-danger">{{ $message }}</span>
+                        <label for="adresse">Adresse</label>
+                        <input type="text" name="adresse" class="form-control" id="adresse" value="{{ old('adresse') }}">
+                        @error('adresse') <span class="text-danger">{{ $message }}</span>
 
                         @enderror
                     </div>
 
-                    <div class="mb-2">
-                        <label for="Description">Description</label>
-                       <textarea name="description" class="form-control" id="" cols="30" rows="3">{{ old('description') }}</textarea>
-                       @error('description') <span class="text-danger">{{ $message }}</span>
 
-                       @enderror
-                    </div>
                     <div class="mb-2">
-                        <label for="date_debut">Date debut</label>
-                        <input type="date" name="date_debut" class="form-control" id="date_debut" value="{{ old('date_debut') }}">
-                        @error('date_debut') <span class="text-danger">{{ $message }}</span>
+                        <label for="contact">Contact</label>
+                        <input type="text" name="contact" class="form-control" id="contact" value="{{ old('contact') }}">
+                        @error('contact') <span class="text-danger">{{ $message }}</span>
 
                         @enderror
                     </div>
-                    <div class="mb-2">
-                        <label for="date_fin">Date fin</label>
-                        <input type="date" name="date_fin" class="form-control" id="date_fin" value="{{ old('date_fin') }}">
-                        @error('date_fin') <span class="text-danger">{{ $message }}</span>
 
-                        @enderror
-                    </div>
                     <div class="mb-2">
                         <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </div>

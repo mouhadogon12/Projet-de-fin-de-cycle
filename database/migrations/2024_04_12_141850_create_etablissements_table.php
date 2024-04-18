@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('etablissements', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->string('adresse');
+            $table->string('contact');
             $table->timestamps();
         });
     }

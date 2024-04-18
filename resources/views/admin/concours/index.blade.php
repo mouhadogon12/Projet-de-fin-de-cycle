@@ -31,14 +31,14 @@
             <div class="card">
                 <div class="card-header">
                     <h2 style="margin-top: 9px">Gestion des concours</h2>
-                </div>
-                <div class="card-body">
-                    <a href="{{ route('concours.create') }}" class="btn btn-success btn-sm" title="Add New Student">
+                    <a href="{{ route('concours.create') }}" class="btn btn-success btn-sm " title="Add New Student" style="  float: right" >
                         <i class="fa fa-plus" aria-hidden="true"></i>Ajouter concours
                     </a>
+                </div>
+                <div class="card-body">
 
-                  <br>
-                </br>
+
+
 
                     <div class="table-responsive">
                         <table class="table">
@@ -46,6 +46,7 @@
                                 <tr>
                                     <th>no</th>
                                     <th>Nom</th>
+                                    <th>Etablissement</th>
                                     <th>Description</th>
                                     <th>Date debut</th>
                                     <th>Date fin</th>
@@ -57,12 +58,19 @@
                                 <tr>
                                     <td>{{ $concours->id }}</td>
                                     <td>{{ $concours->nom }}</td>
-                                    <td>{{ $concours->description }}</td>
+                                    <td>{{ $concours->etablissement->nom }}</td>
+                                    <td>  <div>
+                                        <p>{{ substr($concours->description, 0, 100) }}</p>
+                                        @if(strlen($concours->description) > 100)
+                                            <p id="fullDescription_{{ $concours->id }}" style="display: none;">{{ $concours->description }}</p>
+                                            <button onclick="toggleVisibility({{ $concours->id }})">Voir plus</button>
+                                        @endif
+                                    </div></td>
                                     <td>{{ $concours->date_debut }}</td>
                                     <td>{{ $concours->date_fin }}</td>
 
 
-                                    <td>
+                                    <td style="display: flex">
                                         <div class="d-inline">
                                             <a href="#" title="View Student">
                                                 <button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Detail</button>
@@ -98,7 +106,16 @@
         </div>
     </div>
 </div>
-
+<script>
+         function toggleVisibility(id) {
+        var fullDescription = document.getElementById("fullDescription_" + id);
+        if (fullDescription.style.display === "none") {
+            fullDescription.style.display = "block";
+        } else {
+            fullDescription.style.display = "none";
+        }
+    }
+    </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

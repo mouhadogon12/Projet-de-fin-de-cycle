@@ -3,19 +3,26 @@
     <div class="container">
         <div class="row">
           <div class="col-lg-6 pt-2 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h1>Easy Marketing Solutions For Your Business</h1>
-            <ul>
-              <li><i class="ri-check-line"></i> Dolorem ratione dolorum</li>
-              <li><i class="ri-check-line"></i> Quo nihil natus ea non pariatur optio occaecati</li>
-              <li><i class="ri-check-line"></i> Duis aute irure dolor in reprehenderit in</li>
-            </ul>
+            <h1 class="display-4">Bienvenue sur la Plateforme de Concours</h1>
+            <p class="lead">Trouvez et participez aux concours d'entrée aux établissements d'enseignement supérieur de votre choix.</p>
+            <hr class="my-4">
             <div class="mt-3">
-              <a href="#about" class="btn-get-started scrollto">Get Started</a>
-              <a href="" class="btn-get-quote">Request a Quote</a>
+
+                @if (Route::has('login'))
+                @auth
+                @else
+                <p>Pour commencer, connectez-vous ou créez un compte.</p>
+                <a class="btn-get-started scrollto" href="{{ route('login') }}">Se connecter</a></li>
+                <a class="btn-get-started scrollto" href="{{ route('register') }}">S'inscrire</a></li>
+                @endauth
+        @endif
+
+
+
             </div>
           </div>
           <div class="col-lg-6 order-1 order-lg-2 hero-img">
-            <img src="assets/img/hero-img.png" class="img-fluid" alt="">
+            <img src="assets/img/Concours.png" class="img-fluid" alt="">
           </div>
         </div>
       </div>

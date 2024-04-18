@@ -4,17 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Concours;
+use App\Models\Etablissement;
+
+
+
 
 class ConcoursController extends Controller
 {
 
     public function create(){
-        return view ('admin.concours.create');
+        $etablissements = Etablissement::all();
+
+        return view ('admin.concours.create',compact('etablissements'));
+
     }
     public function index(){
         $concours = Concours::all();
+        $etablissements = Etablissement::all();
 
-        return view('admin.concours.index', compact('concours'));
+        return view('admin.concours.index', compact('concours','etablissements'));
 
 
     }
@@ -22,9 +30,15 @@ class ConcoursController extends Controller
         // Valider les données du formulaire
     $validatedData = $request->validate([
         'nom' => 'required|max:255|string',
-        'description' => 'required|max:255|string',
+        'description' => 'required|max:100000|string',
         'date_debut' => 'required|date',
         'date_fin' => 'required|date',
+        'etablissement_id' => 'required|exists:etablissements,id',
+
+
+
+        //'etablissement_id' => 'required|unique:concours,etablissement_id'
+
     ]);
 
     // Créer un nouveau concours avec les données validées
@@ -33,6 +47,9 @@ class ConcoursController extends Controller
     $concours->description = $validatedData['description'];
     $concours->date_debut = $validatedData['date_debut'];
     $concours->date_fin = $validatedData['date_fin'];
+    $concours->etablissement_id = $validatedData['etablissement_id'];
+
+    //$concours->etablissement_id = $validatedData['etablissement_id'];
     // Enregistrer le concours
     $concours->save();
 
@@ -49,7 +66,7 @@ class ConcoursController extends Controller
                 // Valider les données du formulaire
     $validatedData = $request->validate([
         'nom' => 'required|max:255|string',
-        'description' => 'required|max:255|string',
+        'description' => 'required|max:100000|string',
         'date_debut' => 'required|date',
         'date_fin' => 'required|date',
     ]);
