@@ -37,31 +37,43 @@
                     @csrf
                     @method('put')
                     <div class="mb-2">
-                        <label for="nom">Nom</label>
-                        <input type="text" name="nom" class="form-control" id="nom" value="{{ $concours->nom }}">
-                        @error('nom') <span class="text-danger">{{ $message }}</span>
+                        <label for="titre">titre</label>
+                        <input type="text" name="titre" class="form-control" id="titre" value="{{ old('titre') }}">
+                        @error('titre') <span class="text-danger">{{ $message }}</span>
+
+                        @enderror
+                    </div>
+                    <div class="mb-2">
+                        <label for="etablissement_id">Établissement</label>
+                        <select name="etablissement_id" class="form-control" id="etablissement_id" required>
+                            <option value="">Sélectionnez un établissement</option>
+                            @foreach($etablissements as $etablissement)
+                                <option value="{{ $etablissement->id }}">{{ $etablissement->nom }}</option>
+                            @endforeach
+                        </select>
+                        @error('etablissement_id') <span class="text-danger">{{ $message }}</span>
 
                         @enderror
                     </div>
 
                     <div class="mb-2">
                         <label for="Description">Description</label>
-                       <textarea name="description" class="form-control" id="" cols="30" rows="3">{{ $concours->description }}</textarea>
+                       <textarea name="description" class="form-control" id="" cols="30" rows="3">{{ old('description') }}</textarea>
                        @error('description') <span class="text-danger">{{ $message }}</span>
 
                        @enderror
                     </div>
                     <div class="mb-2">
-                        <label for="date_debut">Date debut</label>
-                        <input type="date" name="date_debut" class="form-control" id="date_debut" value="{{ $concours->date_debut }}">
-                        @error('date_debut') <span class="text-danger">{{ $message }}</span>
+                        <label for="date_debutIns">Date debut</label>
+                        <input type="date" name="date_debutIns" class="form-control" id="date_debutIns" value="{{ old('date_debutIns') }}">
+                        @error('date_debutIns') <span class="text-danger">{{ $message }}</span>
 
                         @enderror
                     </div>
                     <div class="mb-2">
-                        <label for="date_fin">Date fin</label>
-                        <input type="date" name="date_fin" class="form-control" id="date_fin" value="{{ $concours->date_fin }}">
-                        @error('date_fin') <span class="text-danger">{{ $message }}</span>
+                        <label for="date_limiteIns">Date cloture</label>
+                        <input type="date" name="date_limiteIns" class="form-control" id="date_limiteIns" value="{{ old('date_limiteIns') }}">
+                        @error('date_limiteIns') <span class="text-danger">{{ $message }}</span>
 
                         @enderror
                     </div>

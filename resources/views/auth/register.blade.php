@@ -2,7 +2,9 @@
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
+
         </x-slot>
+
 
         <x-validation-errors class="mb-4" />
 
@@ -13,11 +15,29 @@
                 <x-label for="name" value="{{ __('Name') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
-
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required autocomplete="username" />
             </div>
+            <div class="mt-4">
+                <x-label for="tel" value="{{ __('tel') }}" />
+                <x-input id="tel" class="block mt-1 w-full" type="text" name="tel" :value="old('tel')" required autocomplete="username" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="adresse" value="{{ __('Adresse') }}" />
+                <x-input id="adresse" class="block mt-1 w-full" type="text" name="adresse" :value="old('adresse')" required autocomplete="username" />
+            </div>
+            <div class="mt-4">
+                <x-label for="sexe" value="{{ __('Sexe') }}" />
+                <select id="sexe" name="sexe" class="block mt-1 w-full">
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+
+
 
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />

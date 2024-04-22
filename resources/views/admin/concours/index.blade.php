@@ -45,11 +45,12 @@
                             <thead>
                                 <tr>
                                     <th>no</th>
-                                    <th>Nom</th>
+                                    <th>Titre</th>
                                     <th>Etablissement</th>
                                     <th>Description</th>
                                     <th>Date debut</th>
-                                    <th>Date fin</th>
+                                    <th>Date Cloture</th>
+
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -57,7 +58,7 @@
                                 @foreach ($concours as $concours)
                                 <tr>
                                     <td>{{ $concours->id }}</td>
-                                    <td>{{ $concours->nom }}</td>
+                                    <td>{{ $concours->titre }}</td>
                                     <td>{{ $concours->etablissement->nom }}</td>
                                     <td>  <div>
                                         <p>{{ substr($concours->description, 0, 100) }}</p>
@@ -66,8 +67,8 @@
                                             <button onclick="toggleVisibility({{ $concours->id }})">Voir plus</button>
                                         @endif
                                     </div></td>
-                                    <td>{{ $concours->date_debut }}</td>
-                                    <td>{{ $concours->date_fin }}</td>
+                                    <td>{{ $concours->date_debutIns }}</td>
+                                    <td>{{ $concours->date_limiteIns }}</td>
 
 
                                     <td style="display: flex">

@@ -5,6 +5,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Etablissement;
 use App\Models\Concours;
+use App\Models\Inscription;
+
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -32,12 +34,17 @@ class AdminController extends Controller
 
 
     public function dashboard(){
-        return view('admin.dashboard.index');
+        $totalCandidats = Inscription::count();
+        return view('admin.dashboard.index', compact('totalCandidats'));
     }
 
 
     public function home(){
         return view ('admin.acceuil');
+    }
+    public function candidature(){
+        $candidats = Inscription::all();
+        return view('admin.candidature', compact('candidats'));
     }
 
 

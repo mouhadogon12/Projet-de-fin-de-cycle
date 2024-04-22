@@ -5,8 +5,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ConcoursController;
 use App\Http\Controllers\EtablissementController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileInformationController;
+use App\Http\Controllers\InscriptionController;
 
+use App\Http\Controllers\ProfileInformationController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Models\Inscription;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,8 +67,25 @@ Route::get('/etablissement/create',[EtablissementController::class,'create'])->n
 Route::post('/etablissement/store',[EtablissementController::class,'store'])->name('etablissement.store');
 Route::delete('/etablissement/{id}/delete',[EtablissementController::class, 'destroy'])->name('etablissement.destroy');
 Route::get('/liste',[HomeController::class, 'liste' ])->name('liste.concours');
-Route::get('/concours/{concours}',[HomeController::class, 'voirconcours'])->name('concours.voir');
+Route::get('/concours/{id}',[HomeController::class, 'voirconcours'])->name('concours.voir');
+Route::get('/concours/postuler/{id}',[HomeController::class, 'postuler'])->name('concours.id');
+Route::middleware('auth')->group(function () {
+   // Route::get('/concours/candidater/{id}',[HomeController::class, 'postuler'])->name('candidater.id');
 
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/concours/candidater/{id}',[HomeController::class, 'postuler'])->name('candidater.id');
+    Route::get('/authenticated', [LoginController::class, 'authenticated']);
+    Route::get('/confirmation',[InscriptionController::class, 'confirmation'])->name('confirmation');
+
+    Route::post('/candidater/{concoursId}',[InscriptionController::class, 'store'])->name('candidatures.store');
+});
+
+Route::get('/candidature/gestion',[AdminController::class, 'candidature'])->name('candidats');
 
 
 

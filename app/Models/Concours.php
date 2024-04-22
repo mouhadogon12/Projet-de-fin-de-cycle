@@ -20,5 +20,9 @@ class Concours extends Model
     {
         return $this->hasMany(Inscription::class);
     }
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'inscriptions')->withTimestamps();
+    }
     use HasFactory;
 }

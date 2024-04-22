@@ -21,9 +21,10 @@
                         <img src="#" class="img-fluid rounded-start" style="object-fit: cover;" alt="{{ $concours->nom }}">
                     </div>
                     <div class="col-md-9">
-                        <h3 class="title"><a href="#">{{ $concours->nom }}</a></h3>
-                        <p class="description"><strong class="h5">Date limite:</strong> {{ $concours->date_debut }}</p>
-
+                        <h3 class="title"><a href="{{ route('concours.voir',$concours->id) }}">{{ $concours->titre }}</a></h3>
+                        <p class="description"><strong class="h5">Date d'ouverture:</strong> {{ $concours->date_debutIns }}</p>
+                        <p class="description"><strong class="h5">Date Limite:</strong> {{ $concours->date_limiteIns }}</p>
+                        <p><h4>lien utile</h4><a href="#">{{ $concours->lien }}</a></p>
                         <div class="row">
                             <div class="col-12">
                                 <hr>
@@ -33,7 +34,7 @@
 
                             </div>
                             <div class="col-12 d-flex justify-content-end">
-                                <a href="{{ route('concours.voir',$concours) }}" class="btn btn-lg btn-secondary">En savoir plus</a>
+                                <a href="{{ route('concours.voir',$concours->id) }}" class="btn btn-lg btn-secondary">En savoir plus</a>
                             </div>
                         </div>
                     </div>

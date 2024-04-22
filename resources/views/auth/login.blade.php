@@ -44,5 +44,10 @@
                 </x-button>
             </div>
         </form>
+
+         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
+            <a href="{{ route('register') }}">S'inscrire</a>
+        </button>
+
     </x-authentication-card>
 </x-guest-layout>

@@ -12,7 +12,7 @@
                 <a class="nav-link" href="{{ route('concours.index') }}">Gestion des Concours</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Gestion des Candidats</a>
+                <a class="nav-link" href="{{ route('candidats') }}">Gestion des Candidats</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('etablissement.index') }}">Gestion des etablissement</a>

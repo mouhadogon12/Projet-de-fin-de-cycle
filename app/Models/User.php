@@ -23,11 +23,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'email', 'password', 'usertype'];
+    protected $fillable = ['name', 'email', 'password', 'usertype','tel','adresse','sexe','prenom'];
 
     public function inscriptions()
     {
         return $this->belongsToMany(Concours::class, 'inscription', 'utilisateur_id', 'concours_id');
+    }
+    public function inscriptionsUser()
+    {
+        return $this->hasMany(Inscription::class);
     }
 
     /**

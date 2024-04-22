@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('candidats', function (Blueprint $table) {
             $table->id();
+            
             $table->timestamps();
         });
     }

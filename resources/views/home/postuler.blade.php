@@ -43,29 +43,66 @@
   @include('home.header')
 
 <section id="about" class="about section-bg" style="margin-top: 25px">
+
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>{{ $concours->titre }}</h2>
+            <h2  style="margin-top: 25px">{{ $concours->titre }}</h2>
 
            </div>
 
-        <div class="row bg-white pt-3">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-               <p>Date limite <h3>{{ $concours->date_debutIns }}</h3></p>
-                <p>{{ $concours->description }}</p>
+       <div>
+        <form action="{{ route('candidatures.store',['concoursId' => $concours->id]) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-3">
+                <h2>Candidater</h2>
             </div>
-            <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
-                data-aos-delay="100">
-                <div></div>
 
-                            <div class="d-grid gap-2" style="width: 50% end">
-                                <a href="{{ route('candidater.id',$concours->id) }}" class="btn btn-primary">Postuler a ce concours</a>
-                            </div>
+            <div class="mb-3 row">
+               <div class="col">
+                <label for="seriebac">Série de baccalauréat</label>
+                <select class="form-select" id="seriebac" name="seriebac" required>
+                    <option value="">Sélectionner la série de baccalauréat</option>
+                    <option value="S2">S2</option>                    <!-- Ajoutez d'autres options au besoin -->
+                    <option value="S1">S1</option>                    <!-- Ajoutez d'autres options au besoin -->
+                    <option value="S3">S3</option>
+                    <option value="L2">L2</option>
+                    <option value="L">L'</option>
+                    <option value="T">T</option>                    <!-- Ajoutez d'autres options au besoin -->
+                    <!-- Ajoutez d'autres options au besoin -->
+                </select>
+               </div>
+                <div class="col">
+                    <label for="moybac" class="form-label">Moyenne Bac</label>
+                    <input type="number" class="form-control" id="moybac" name="moybac" required>
+                </div>
             </div>
-            <div class="col-lg-12 pt-4 pt-lg-0 content d-flex flex-column justify-content-center">
+           <div class="mb-3 row">
+            <div class="col">
+                <label for="annebac" class="form-label">Annee obtention Bac</label>
+                <input type="number" class="form-control" id="annebac" name="annebac" required>
             </div>
-        </div>
+            <div class="col">
+                <label for="ecole" class="form-label">Etablissement de provenance</label>
+                <input type="text" class="form-control" id="ecole" name="ecole" required>
+            </div>
+           </div>
+           <div class="mb-3 row">
+            <div class="col">
+                <label for="cni" class="form-label">N CNI</label>
+                <input type="number" class="form-control" id="cni" name="cni" required>
+            </div>
+            <div class="col">
+                <label for="document" class="form-label">releve de note</label>
+                <input type="file" class="form-control" id="document" name="document" required>
+            </div>
+           </div>
+
+            <button type="submit" class="btn btn-primary">Soumettre</button>
+        </form>
+
+
+       </div>
 
     </div>
 </section>

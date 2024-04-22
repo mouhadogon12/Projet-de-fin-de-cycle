@@ -29,11 +29,14 @@ class ConcoursController extends Controller
     public function store(Request $request){
         // Valider les données du formulaire
     $validatedData = $request->validate([
-        'nom' => 'required|max:255|string',
+        'titre' => 'required|max:255|string',
         'description' => 'required|max:100000|string',
-        'date_debut' => 'required|date',
-        'date_fin' => 'required|date',
+        'date_debutIns' => 'required|date',
+        'date_limiteIns' => 'required|date',
         'etablissement_id' => 'required|exists:etablissements,id',
+        'lien' => 'required|max:255|string',
+
+
 
 
 
@@ -43,11 +46,13 @@ class ConcoursController extends Controller
 
     // Créer un nouveau concours avec les données validées
     $concours = new Concours();
-    $concours->nom = $validatedData['nom'];
+    $concours->titre = $validatedData['titre'];
     $concours->description = $validatedData['description'];
-    $concours->date_debut = $validatedData['date_debut'];
-    $concours->date_fin = $validatedData['date_fin'];
+    $concours->date_debutIns = $validatedData['date_debutIns'];
+    $concours->date_limiteIns = $validatedData['date_limiteIns'];
+    $concours->lien = $validatedData['lien'];
     $concours->etablissement_id = $validatedData['etablissement_id'];
+
 
     //$concours->etablissement_id = $validatedData['etablissement_id'];
     // Enregistrer le concours
@@ -65,20 +70,23 @@ class ConcoursController extends Controller
 
                 // Valider les données du formulaire
     $validatedData = $request->validate([
-        'nom' => 'required|max:255|string',
+        'titre' => 'required|max:255|string',
         'description' => 'required|max:100000|string',
-        'date_debut' => 'required|date',
-        'date_fin' => 'required|date',
+        'date_debutIns' => 'required|date',
+        'date_limiteIns' => 'required|date',
+        'lien' => 'required|string',
     ]);
 
     // Récupérer le concours à modifier
     $concours = Concours::findOrFail($id);
 
     // Mettre à jour les attributs du concours avec les données validées
-    $concours->nom = $validatedData['nom'];
+    $concours->nom = $validatedData['titre'];
     $concours->description = $validatedData['description'];
-    $concours->date_debut = $validatedData['date_debut'];
-    $concours->date_fin = $validatedData['date_fin'];
+    $concours->date_debutIns = $validatedData['date_debutIns'];
+    $concours->date_limiteIns = $validatedData['date_limiteIns'];
+    $concours->lien = $validatedData['lien'];
+
 
     // Enregistrer les modifications
     $concours->save();

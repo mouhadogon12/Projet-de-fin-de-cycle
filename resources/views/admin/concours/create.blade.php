@@ -36,9 +36,9 @@
                 <form action="{{ route('concours.store') }}" method="post">
                     @csrf
                     <div class="mb-2">
-                        <label for="nom">Nom</label>
-                        <input type="text" name="nom" class="form-control" id="nom" value="{{ old('nom') }}">
-                        @error('nom') <span class="text-danger">{{ $message }}</span>
+                        <label for="titre">titre</label>
+                        <input type="text" name="titre" class="form-control" id="titre" value="{{ old('titre') }}">
+                        @error('titre') <span class="text-danger">{{ $message }}</span>
 
                         @enderror
                     </div>
@@ -63,16 +63,24 @@
                        @enderror
                     </div>
                     <div class="mb-2">
-                        <label for="date_debut">Date debut</label>
-                        <input type="date" name="date_debut" class="form-control" id="date_debut" value="{{ old('date_debut') }}">
-                        @error('date_debut') <span class="text-danger">{{ $message }}</span>
+                        <label for="lien">lien</label>
+                        <input type="text" name="lien" class="form-control" id="lien" value="{{ old('lien') }}">
+                        @error('lien') <span class="text-danger">{{ $message }}</span>
+
+                        @enderror
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="date_debutIns">Date debut</label>
+                        <input type="date" name="date_debutIns" class="form-control" id="date_debutIns" value="{{ old('date_debutIns') }}">
+                        @error('date_debutIns') <span class="text-danger">{{ $message }}</span>
 
                         @enderror
                     </div>
                     <div class="mb-2">
-                        <label for="date_fin">Date fin</label>
-                        <input type="date" name="date_fin" class="form-control" id="date_fin" value="{{ old('date_fin') }}">
-                        @error('date_fin') <span class="text-danger">{{ $message }}</span>
+                        <label for="date_limiteIns">Date cloture</label>
+                        <input type="date" name="date_limiteIns" class="form-control" id="date_limiteIns" value="{{ old('date_limiteIns') }}">
+                        @error('date_limiteIns') <span class="text-danger">{{ $message }}</span>
 
                         @enderror
                     </div>

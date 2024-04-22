@@ -43,29 +43,16 @@
   @include('home.header')
 
 <section id="about" class="about section-bg" style="margin-top: 25px">
+
     <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-            <h2>{{ $concours->titre }}</h2>
 
-           </div>
 
-        <div class="row bg-white pt-3">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-               <p>Date limite <h3>{{ $concours->date_debutIns }}</h3></p>
-                <p>{{ $concours->description }}</p>
-            </div>
-            <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
-                data-aos-delay="100">
-                <div></div>
+       <div>
 
-                            <div class="d-grid gap-2" style="width: 50% end">
-                                <a href="{{ route('candidater.id',$concours->id) }}" class="btn btn-primary">Postuler a ce concours</a>
-                            </div>
-            </div>
-            <div class="col-lg-12 pt-4 pt-lg-0 content d-flex flex-column justify-content-center">
-            </div>
-        </div>
+        <h1>Candidature valide</h1>
+
+       </div>
 
     </div>
 </section>
