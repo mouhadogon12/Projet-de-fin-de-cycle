@@ -13,35 +13,23 @@
             </div>
 
         </div>
-        @foreach($concours as $concours)
-        <div class="col-md-12">
-            <div class="icon-box decorate" data-aos="fade-up" data-aos-delay="100">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="#" class="img-fluid rounded-start" style="object-fit: cover;" alt="{{ $concours->nom }}">
-                    </div>
-                    <div class="col-md-9">
-                        <h3 class="title"><a href="{{ route('concours.voir',$concours->id) }}">{{ $concours->titre }}</a></h3>
-                        <p class="description"><strong class="h5">Date d'ouverture:</strong> {{ $concours->date_debutIns }}</p>
-                        <p class="description"><strong class="h5">Date Limite:</strong> {{ $concours->date_limiteIns }}</p>
-                        <p><h4>lien utile</h4><a href="#">{{ $concours->lien }}</a></p>
-                        <div class="row">
-                            <div class="col-12">
-                                <hr>
-                            </div>
-                            <div class="col-12">
-                                <p class="description">{{ Str::limit($concours->description, 100) }}</p>
-
-                            </div>
-                            <div class="col-12 d-flex justify-content-end">
-                                <a href="{{ route('concours.voir',$concours->id) }}" class="btn btn-lg btn-secondary">En savoir plus</a>
-                            </div>
-                        </div>
+        <div class="row">
+            @foreach($concours as $concours)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top img-fluid" src="{{ asset('storage/images/' . $concours->image) }}" alt="Logo" style="object-fit: cover; height: 200px;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title"><a href="{{ route('concours.voir',$concours->id) }}">{{ $concours->titre }}</a></h5>
+                        <p class="card-text"><strong class="h6">Date d'ouverture:</strong> {{ $concours->date_debutIns }}</p>
+                        <p class="card-text"><strong class="h6">Date Limite:</strong> {{ $concours->date_limiteIns }}</p>
+                        <p class="card-text flex-grow-1">{{ Str::limit($concours->description, 100) }}</p>
+                        <a href="{{ route('concours.voir',$concours->id) }}" class="btn btn-primary mt-auto">En savoir plus</a>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
-    @endforeach
+
 
 
 

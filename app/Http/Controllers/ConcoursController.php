@@ -35,14 +35,19 @@ class ConcoursController extends Controller
         'date_limiteIns' => 'required|date',
         'etablissement_id' => 'required|exists:etablissements,id',
         'lien' => 'required|max:255|string',
-
-
-
-
-
-        //'etablissement_id' => 'required|unique:concours,etablissement_id'
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+         // Validation pour un fichier image
+            //'etablissement_id' => 'required|unique:concours,etablissement_id'
 
     ]);
+     // Récupérer le fichier logo téléchargé
+     $image = $request->file('image');
+
+     // Générer un nom unique pour le fichier
+     $imageName = time().'.'.$image->extension();
+
+     // Stocker le fichier dans le dossier public/images
+     $image->storeAs('public/images', $imageName);
 
     // Créer un nouveau concours avec les données validées
     $concours = new Concours();
@@ -52,6 +57,8 @@ class ConcoursController extends Controller
     $concours->date_limiteIns = $validatedData['date_limiteIns'];
     $concours->lien = $validatedData['lien'];
     $concours->etablissement_id = $validatedData['etablissement_id'];
+    $concours->image = $imageName; // Enregistrer le nom du fichier dans la base de données
+
 
 
     //$concours->etablissement_id = $validatedData['etablissement_id'];
@@ -63,8 +70,10 @@ class ConcoursController extends Controller
 }
             public function edit(int $id){
                 $concours = Concours ::findOrFail($id);
+                $etablissements = Etablissement::all();
+
                // return $concours;
-               return view('admin.concours.edit',compact('concours'));
+               return view('admin.concours.edit',compact('concours','etablissements'));
             }
             public function update(Request $request,int $id){
 
@@ -75,17 +84,32 @@ class ConcoursController extends Controller
         'date_debutIns' => 'required|date',
         'date_limiteIns' => 'required|date',
         'lien' => 'required|string',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation pour un fichier image
+
+
     ]);
+     // Récupérer le fichier logo téléchargé
+     $image = $request->file('image');
+
+     // Générer un nom unique pour le fichier
+     $imageName = time().'.'.$image->extension();
+
+     // Stocker le fichier dans le dossier public/images
+     $image->storeAs('public/images', $imageName);
+
+    // Créer un nouveau concours avec les données validées
 
     // Récupérer le concours à modifier
     $concours = Concours::findOrFail($id);
 
     // Mettre à jour les attributs du concours avec les données validées
-    $concours->nom = $validatedData['titre'];
+    $concours->titre = $validatedData['titre'];
     $concours->description = $validatedData['description'];
     $concours->date_debutIns = $validatedData['date_debutIns'];
     $concours->date_limiteIns = $validatedData['date_limiteIns'];
     $concours->lien = $validatedData['lien'];
+    $concours->image = $imageName; // Enregistrer le nom du fichier dans la base de données
+
 
 
     // Enregistrer les modifications
@@ -101,6 +125,12 @@ class ConcoursController extends Controller
                 return redirect()->route('concours.index')->with('success', 'Le concours a été supprime.');
 
 
+            }
+            public function detail(int $id){
+                $concours = Concours::findOrFail($id);
+
+
+            return view('admin.concours.show',compact('concours'));
             }
 
     }

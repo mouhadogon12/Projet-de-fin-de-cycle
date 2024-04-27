@@ -33,7 +33,7 @@
                         <a href="#" class="btn btn-primary " >Back</a>
                     </div>
             <div class="card-body">
-                <form action="{{ route('concours.store') }}" method="post">
+                <form action="{{ route('concours.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-2">
                         <label for="titre">titre</label>
@@ -63,12 +63,20 @@
                        @enderror
                     </div>
                     <div class="mb-2">
+                        <label for="image">Images concours</label>
+                        <input type="file" name="image" class="form-control" id="image" value="{{ old('image') }}">
+                        @error('image') <span class="text-danger">{{ $message }}</span>
+
+                        @enderror
+                    </div>
+                    <div class="mb-2">
                         <label for="lien">lien</label>
                         <input type="text" name="lien" class="form-control" id="lien" value="{{ old('lien') }}">
                         @error('lien') <span class="text-danger">{{ $message }}</span>
 
                         @enderror
                     </div>
+
 
                     <div class="mb-2">
                         <label for="date_debutIns">Date debut</label>
@@ -77,6 +85,7 @@
 
                         @enderror
                     </div>
+
                     <div class="mb-2">
                         <label for="date_limiteIns">Date cloture</label>
                         <input type="date" name="date_limiteIns" class="form-control" id="date_limiteIns" value="{{ old('date_limiteIns') }}">

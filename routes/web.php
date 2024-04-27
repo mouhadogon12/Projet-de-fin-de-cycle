@@ -73,6 +73,10 @@ Route::middleware('auth')->group(function () {
    // Route::get('/concours/candidater/{id}',[HomeController::class, 'postuler'])->name('candidater.id');
 
 });
+Route::get('/etablissement/{id}/edit',[EtablissementController::class,'edit'])->name('etablissement.edit');
+Route::put('/etablissement/{id}',[EtablissementController::class,'update'])->name('etablissement.update');
+Route::get('/concours/{id}/detail',[ConcoursController::class,'detail'])->name('concours.detail');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -83,12 +87,19 @@ Route::middleware([
     Route::get('/confirmation',[InscriptionController::class, 'confirmation'])->name('confirmation');
 
     Route::post('/candidater/{concoursId}',[InscriptionController::class, 'store'])->name('candidatures.store');
+    Route::get('/etat',[InscriptionController::class, 'etatCandidature'])->name('etatCandidat');
+    Route::get('/candidature/dossiers',[InscriptionController::class, 'dossiers'])->name('dossier.candidat');
+
 });
 
 Route::get('/candidature/gestion',[AdminController::class, 'candidature'])->name('candidats');
 
+//Route::get('/admin/view-releve/{id}', 'App\Http\Controllers\AdminController@viewReleve')->name('admin.view_releve');
 
+Route::get('/admin/view-releve/{id}',[AdminController::class, 'viewReleve'])->name('admin.view_releve');
 
+Route::post('/admin/approve/{id}', [AdminController::class, 'approve'])->name('admin.approve');
+Route::post('/admin/reject/{id}', [AdminController::class, 'reject'])->name('admin.reject');
 
 
 

@@ -17,8 +17,8 @@
 
 
   <!-- Favicons -->
-  <link href="{{ asset('') }}assets/img/favicon.png" rel="icon">
-  <link href="{{ asset('') }}assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="{{ asset('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i') }}" rel="stylesheet">
@@ -48,108 +48,38 @@
 
   <!-- ======= Header ======= -->
   @include('home.header')
+  <main id="main">
 
-<section id="about" class="about section-bg" style="margin-top: 25px">
-
+  <section id="about" class="about">
     <div class="container" data-aos="fade-up">
 
 
-        <div class="section-title">
-
-            <h2  style="margin-top: 25px">{{ $concours->titre }}</h2>
-
-           </div>
-
-       <div>
-        <form action="{{ route('candidatures.store',['concoursId' => $concours->id]) }}" method="POST" enctype="multipart/form-data" >
-            @csrf
-            <div class="mb-3">
-                @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
+    <div class="container" style="margin-top: 45px">
+        <h1>Vos dossiers de candidature</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Concours</th>
+                    <th>Date d'inscription</th>
+                    <!-- Ajoutez d'autres colonnes au besoin -->
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($candidatures as $candidature)
+                <tr>
+                    <td>{{ $candidature->concours->titre }}</td>
+                    <td>{{ $candidature->created_at->format('d/m/Y') }}</td>
+                    <!-- Ajoutez d'autres colonnes au besoin -->
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-@endif
-
-                <h2>Candidater</h2>
-
-            </div>
-
-            <div class="mb-3 row">
-               <div class="col">
-                <label for="seriebac">Série de baccalauréat</label>
-                <select class="form-select" id="seriebac" name="seriebac" required>
-                    <option value="">Sélectionner la série de baccalauréat</option>
-                    <option value="S2">S2</option>                    <!-- Ajoutez d'autres options au besoin -->
-                    <option value="S1">S1</option>                    <!-- Ajoutez d'autres options au besoin -->
-                    <option value="S3">S3</option>
-                    <option value="L2">L2</option>
-                    <option value="L">L'</option>
-                    <option value="T">T</option>                    <!-- Ajoutez d'autres options au besoin -->
-                    <!-- Ajoutez d'autres options au besoin -->
-                </select>
-               </div>
-                <div class="col">
-                    <label for="releve_bac" class="form-label">Releve Bac</label>
-                    <input type="file" class="form-control" id="releve_bac" name="releve_bac" required>
-                </div>
-            </div>
-           <div class="mb-3 row">
-            <div class="col">
-                <label for="annebac" class="form-label">Annee obtention Bac</label>
-                <input type="number" class="form-control" id="annebac" name="annebac" required>
-            </div>
-            <div class="col">
-                <label for="ecole" class="form-label">Etablissement de provenance</label>
-                <input type="text" class="form-control" id="ecole" name="ecole" required>
-            </div>
-           </div>
-           <div class="mb-3 row">
-            <div class="col">
-                <label for="num_cni" class="form-label">N* CNI</label>
-                <input type="number" class="form-control" id="num_cni" name="num_cni" required>
-            </div>
-            <div class="col">
-                <label for="code_postal" class="form-label">Code postal</label>
-                <input type="number" class="form-control" id="code_postal" name="code_postal" required>
-            </div>
-           </div>
-           <div class="mb-3 row">
-            <div class="col">
-                <label for="date_Naissance" class="form-label">Date de naissance</label>
-                <input type="date" class="form-control" id="date_Naissance" name="date_Naissance" required>
-            </div>
-            <div class="col">
-                <label for="lieu_Naissance" class="form-label">Lieu de Naissance</label>
-                <input type="text" class="form-control" id="lieu_Naissance" name="lieu_Naissance" required>
-            </div>
-           </div>
-           <div class="mb-1 row" style="width: 50%">
-            <div class="col">
-             <label for="nationalite">Nationnalite</label>
-             <select class="form-select" id="nationalite" name="nationalite" required>
-                 <option value="">Votre nationalite</option>
-                 <option value="Guineene">Guinee</option>                    <!-- Ajoutez d'autres options au besoin -->
-                 <option value="Mauritanienne">Mauritanie</option>                    <!-- Ajoutez d'autres options au besoin -->
-                 <option value="Gambiene">Mauritanie</option>
-                 <option value="Senegalaise">Senegal</option>
-                 <option value="Maliene">Mali</option>
-                 <option value="Marocaine">Maroc</option>                    <!-- Ajoutez d'autres options au besoin -->
-                 <!-- Ajoutez d'autres options au besoin -->
-             </select>
-            </div>
-
-         </div>
-
-
-         <a class="btn btn-danger" style="  float: right" href="{{ route('home.page') }}">Annuler</a>
-            <button type="submit" class="btn btn-primary" style="  float: right">Soumettre</button>
-        </form>
-
-
-       </div>
-
     </div>
-</section>
+    </section>
+    </main>
+
+
 
   <!-- ======= Hero Section ======= -->
 

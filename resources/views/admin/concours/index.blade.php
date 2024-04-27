@@ -25,9 +25,12 @@
     <div class="row">
 
         <div class="col-md-12">
-            @if (session()->has('success'))
-            <div class="alert alert-success text-center my-2">{{ session()->get('success') }}</div>
-            @endif
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
             <div class="card">
                 <div class="card-header">
                     <h2 style="margin-top: 9px">Gestion des concours</h2>
@@ -73,7 +76,7 @@
 
                                     <td style="display: flex">
                                         <div class="d-inline">
-                                            <a href="#" title="View Student">
+                                            <a href="{{ route('concours.detail',$concours->id) }}" title="View Student">
                                                 <button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Detail</button>
                                             </a>
                                         </div>

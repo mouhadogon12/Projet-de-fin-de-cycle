@@ -9,7 +9,7 @@ use App\Models\Inscription;
 class Concours extends Model
 
 {
-    protected $fillable = ['nom','etablissement_id', 'titre', 'date_debut', 'date_fin', 'description'];
+    protected $fillable = ['image','nom','etablissement_id', 'titre', 'date_debut', 'date_fin', 'description'];
 
     public function etablissement()
     {

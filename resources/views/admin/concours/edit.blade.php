@@ -28,12 +28,12 @@
 
 
                 <div class="card-header">
-                    <h4 class="mb-0" >Modifier concours</h4>
+
                     <div class="text-right" style="margin-top: -25px">
-                        <a href="#" class="btn btn-primary " >Back</a>
+                        <a href="{{ route('concours.index') }}" class="btn btn-primary " >Back</a>
                     </div>
             <div class="card-body">
-                <form action="{{ route('concours.update',$concours->id) }}" method="post">
+                <form action="{{ route('concours.update',$concours->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="mb-2">
@@ -64,12 +64,29 @@
                        @enderror
                     </div>
                     <div class="mb-2">
+                        <label for="image">Images concours</label>
+                        <input type="file" name="image" class="form-control" id="image" value="{{ old('image') }}">
+                        @error('image') <span class="text-danger">{{ $message }}</span>
+
+                        @enderror
+                    </div>
+                    <div class="mb-2">
+                        <label for="lien">lien</label>
+                        <input type="text" name="lien" class="form-control" id="lien" value="{{ old('lien') }}">
+                        @error('lien') <span class="text-danger">{{ $message }}</span>
+
+                        @enderror
+                    </div>
+
+
+                    <div class="mb-2">
                         <label for="date_debutIns">Date debut</label>
                         <input type="date" name="date_debutIns" class="form-control" id="date_debutIns" value="{{ old('date_debutIns') }}">
                         @error('date_debutIns') <span class="text-danger">{{ $message }}</span>
 
                         @enderror
                     </div>
+
                     <div class="mb-2">
                         <label for="date_limiteIns">Date cloture</label>
                         <input type="date" name="date_limiteIns" class="form-control" id="date_limiteIns" value="{{ old('date_limiteIns') }}">

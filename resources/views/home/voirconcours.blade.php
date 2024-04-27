@@ -42,28 +42,49 @@
   <!-- ======= Header ======= -->
   @include('home.header')
 
-<section id="about" class="about section-bg" style="margin-top: 25px">
+  <section id="about" class="about section-bg">
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>{{ $concours->titre }}</h2>
+            <h2  style="margin-top: 25px">
+                {{ $concours->titre }}
+            </h2>
+           {{-- <h3>APPEL A CANDIDATURE ADMISSION LICENCE COMMERCE ET DISTRIBUTION</h3>
+                                <h3 style="font-weight: 300">Frais dossier: <span>10000 FCFA</span>
+                                        </h3>
+                            <h4>
+                <span class="badge bg-primary text-white">Sélection de dossier</span>
+            </h4>
+                        </div> --}}
 
-           </div>
+
 
         <div class="row bg-white pt-3">
             <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-               <p>Date limite <h3>{{ $concours->date_debutIns }}</h3></p>
-                <p>{{ $concours->description }}</p>
+                <img  class="img-fluid rounded-start" style="object-fit: cover;" src="{{ asset('storage/images/' . $concours->image) }}" alt="Logo">
+
             </div>
             <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
                 data-aos-delay="100">
-                <div></div>
+                <h3>Clôture des inscriptions :
+                    <span>{{ $concours->date_limiteIns }}</span></h3>
+                <ul>
 
-                            <div class="d-grid gap-2" style="width: 50% end">
-                                <a href="{{ route('candidater.id',$concours->id) }}" class="btn btn-primary">Postuler a ce concours</a>
+                                                                        <li>
+                            <div class="d-grid gap-2" style="width: 50%; margin-left: 130px">
+                                <a href="{{ route('candidater.id',$concours->id) }}"
+                                    class="btn btn-primary">Postuler a ce concours</a>
                             </div>
+                        </li>
+                                        </ul>
+
             </div>
             <div class="col-lg-12 pt-4 pt-lg-0 content d-flex flex-column justify-content-center">
+                <div class="blockquote">
+                    <p class="fst-italic">
+                       {{ $concours->description }}
+                    </p>
+                </div>
             </div>
         </div>
 

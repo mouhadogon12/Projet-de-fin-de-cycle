@@ -20,7 +20,16 @@ class LoginController extends Controller
         }
 
         // Rediriger les autres utilisateurs vers leur propre dashboard
-        return redirect('/home');
+        return redirect('/concours/candidater/{id}');
+    }
+
+    public function notEvenAuthenticated(Request $request, $user_type)
+    {
+        $user_type=Auth()->user()->usertype;
+
+
+        // Rediriger les autres utilisateurs vers leur propre dashboard
+        return redirect('/concours/candidater/{id}');
     }
 }
 

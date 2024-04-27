@@ -64,17 +64,11 @@
                                         <td>{{ $etablissement->adresse }}</td>
                                         <td>{{ $etablissement->contact }}</td>
 
-
-
-
                                         <td>
                                             <div class="d-inline">
-                                                <a href="#" title="View Student">
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Detail</button>
-                                                </a>
-                                            </div>
+
                                             <div class="d-inline">
-                                                <a href="#" title="Edit Student">
+                                                <a href="{{ route('etablissement.edit', $etablissement->id) }}" title="Edit Student">
                                                     <button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modifier</button>
                                                 </a>
                                             </div>

@@ -33,7 +33,7 @@
                         <a href="#" class="btn btn-primary " >Back</a>
                     </div>
             <div class="card-body">
-                <form action="{{ route('etablissement.store') }}" method="post">
+                <form action="{{ route('etablissement.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-2">
                         <label for="nom">Nom de l'etablissement</label>
@@ -49,6 +49,7 @@
 
                         @enderror
                     </div>
+                   
 
 
                     <div class="mb-2">

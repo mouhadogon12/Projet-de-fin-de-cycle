@@ -24,15 +24,18 @@ class EtablissementController extends Controller
         'adresse' => 'required|max:255|string',
         'contact' => 'required|max:255|string',
 
+
         //'etablissement_id' => 'required|unique:concours,etablissement_id'
 
     ]);
+
 
     // Créer un nouveau concours avec les données validées
     $etablissements = new Etablissement();
     $etablissements->nom = $validatedData['nom'];
     $etablissements->contact = $validatedData['contact'];
     $etablissements->adresse = $validatedData['adresse'];
+
 
     //$concours->etablissement_id = $validatedData['etablissement_id'];
     // Enregistrer le concours
@@ -60,6 +63,46 @@ class EtablissementController extends Controller
 
 
     }
-   
+    public function edit(int $id){
+        $etablissement = Etablissement::all();
+        $etablissement = Etablissement ::findOrFail($id);
+
+
+        return view('admin.etablissement.edit',compact('etablissement'));
+    }
+    public function update(Request $request, int $id){
+             // Valider les données du formulaire
+    $validatedData = $request->validate([
+        'nom' => 'required|max:255|string',
+        'adresse' => 'required|max:255|string',
+        'contact' => 'required|max:255|string',
+
+
+        //'etablissement_id' => 'required|unique:concours,etablissement_id'
+
+    ]);
+    $etablissements = Etablissement::findOrFail($id);
+
+
+
+    // Créer un nouveau concours avec les données validées
+
+    $etablissements->nom = $validatedData['nom'];
+    $etablissements->contact = $validatedData['contact'];
+    $etablissements->adresse = $validatedData['adresse'];
+
+
+
+    //$concours->etablissement_id = $validatedData['etablissement_id'];
+    // Enregistrer le concours
+    $etablissements->save();
+
+    // Rediriger l'utilisateur vers une autre page par exemple
+    return redirect()->route('etablissement.index')->with('success', 'l\'Etablissement a été modifie avec succès.');
+
+
+    }
+
+
 
 }

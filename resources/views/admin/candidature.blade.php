@@ -33,9 +33,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2 style="margin-top: 9px">Gestion des candidats</h2>
-                    <a href="#" class="btn btn-success btn-sm " title="Add New Student" style="  float: right" >
-                        <i class="fa fa-plus" aria-hidden="true"></i>Ajouter candidat
-                    </a>
+
                 </div>
                 <div class="card-body">
 
@@ -43,17 +41,16 @@
 
 
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>no</th>
+                                    <th>No</th>
                                     <th>Nom</th>
                                     <th>Email</th>
                                     <th>Série de bac</th>
-                                    <th>Moyenne bac</th>
+                                    <th>Relevé bac</th>
                                     <th>Année bac</th>
                                     <th>Action</th>
-                                    <!-- Ajoutez d'autres en-têtes au besoin -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,29 +60,27 @@
                                     <td>{{ $candidat->user->name}}</td>
                                     <td>{{ $candidat->user->email}}</td>
                                     <td>{{ $candidat->seriebac }}</td>
-                                    <td>{{ $candidat->moybac }}</td>
-                                    <td>{{ $candidat->annebac }}</td>
-                                    <!-- Ajoutez d'autres colonnes au besoin -->
-                                    <td style="display: flex">
-                                        <div class="d-inline">
-                                            <form method="POST" action="#" accept-charset="UTF-8" class="d-inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Student" onclick="return confirm('Vous etes sure?')">
-                                                    <i class="fa fa-trash-o" aria-hidden="true"></i> Supprimer
-                                                </button>
-                                            </form>
-                                        </div>
+                                    <td>
+                                        <a href="{{ route('admin.view_releve', $candidat->id) }}" class="btn btn-primary"><i class="fa fa-file"></i> Voir le relevé</a>
+
                                     </td>
-
-
+                                    <td>{{ $candidat->annebac }}</td>
+                                    <td>
+                                        <form action="{{ route('admin.approve', $candidat->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Approuver</button>
+                                        </form>
+                                        <form action="#" method="POST" style="display: inline;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> Rejeter</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
-
-
                             </tbody>
                         </table>
                     </div>
+
 
                 </div>
             </div>

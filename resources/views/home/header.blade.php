@@ -13,8 +13,12 @@
           @if (Route::has('login'))
 
               @auth
+              <li><a class="getstarted scrollto" href="{{ route('dossier.candidat') }}">Mes candidatures</a></li>
+
+
             <x-app-layout>
             </x-app-layout>
+
               @else
               <li><a class="getstarted scrollto" href="{{ route('login') }}">Se connecter</a></li>
                   <li><a class="getstarted scrollto" href="{{ route('register') }}">S'inscrire</a></li>

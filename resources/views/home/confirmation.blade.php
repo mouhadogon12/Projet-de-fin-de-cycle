@@ -8,10 +8,19 @@
   <title>Sen Concours</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <style type="text/css">
+    .titreCan{
+        font-size: 35px;
+        justify-content: center;
+        margin-top: 20px;
+
+
+    }
+  </style>
 
   <!-- Favicons -->
-  <link href="{{ asset('') }}assets/img/favicon.png" rel="icon">
-  <link href="{{ asset('') }}assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="{{ asset('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i') }}" rel="stylesheet">
@@ -45,14 +54,53 @@
 <section id="about" class="about section-bg" style="margin-top: 25px">
 
     <div class="container" data-aos="fade-up">
+       <div class="row">
+         <div class="col-md-8">
+          <div>
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+          </div>
+
+
+            <h1 class="titreCan">Candidature Soumise</h1>
+
+
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Résumé de votre candidature</h2>
+                        <p class="card-text">Merci <span>{{ $nomUtilisateur }}</span> d'avoir soumis votre candidature. Voici un résumé des informations que vous avez fournies :</p>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Série de baccalauréat :</strong> {{ $candidature->seriebac }}</li>
+                            <li class="list-group-item"><strong>Code Postal :</strong> {{ $candidature->code_postal }}</li>
+                            <li class="list-group-item"><strong>Année d'obtention du baccalauréat :</strong> {{ $candidature->annebac }}</li>
+                            <li class="list-group-item"><strong>École :</strong> {{ $candidature->ecole }}</li>
+                            <li class="list-group-item"><strong>Numéro CNI :</strong> {{ $candidature->num_cni }}</li>
+                            <li class="list-group-item"><strong>Date de Naissance :</strong> {{ $candidature->date_Naissance }}</li>
+                            <li class="list-group-item"><strong>Lieu de Naissance :</strong> {{ $candidature->lieu_Naissance }}</li>
+                            <li class="list-group-item"><strong>Nationalité :</strong> {{ $candidature->nationalite }}</li>
+                            <!-- Ajoutez d'autres détails de la candidature au besoin -->
+                        </ul>
+                        <p class="card-text">Merci pour votre candidature. Nous vous contacterons bientôt.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-primary" style="  float: right" href="{{ route('home.page') }}">Retourner a l'acceuil</a>
 
 
 
-       <div>
 
-        <h1>Candidature valide</h1>
 
+
+
+        </div>
        </div>
+
+
+
 
     </div>
 </section>

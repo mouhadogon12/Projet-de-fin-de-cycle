@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('date_debutIns');
             $table->date('date_limiteIns');
             $table->string('lien');
+            $table->string('image');
+
             $table->text('description');
             $table->timestamps();
         });

@@ -16,11 +16,18 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('concours_id')->constrained()->onDelete('cascade');
             $table->string('seriebac');
-            $table->string('moybac');
-            $table->string('cni');
+
+            $table->integer('num_cni');
+            $table->integer('code_postal');
+
             $table->string('ecole');
-            $table->string('document');
-            $table->string('annebac');
+            $table->string('nationalite');
+
+            $table->string('releve_bac');
+            $table->date('date_Naissance');
+            $table->string('lieu_Naissance');
+
+            $table->integer('annebac');
             $table->timestamps();
         });
     }
