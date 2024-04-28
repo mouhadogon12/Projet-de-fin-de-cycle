@@ -8,6 +8,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="{{ route('home.page') }}">Acceuil</a></li>
+          <li><a class="nav-link scrollto active" href="{{ route('autre.concours') }}">Liste concours</a></li>
 
 
           @if (Route::has('login'))
@@ -20,7 +21,6 @@
             </x-app-layout>
 
               @else
-              <li><a class="getstarted scrollto" href="{{ route('login') }}">Se connecter</a></li>
                   <li><a class="getstarted scrollto" href="{{ route('register') }}">S'inscrire</a></li>
               @endauth
 

@@ -22,7 +22,9 @@
 @include('admin.header')
 
     <!-- Contenu de la page -->
-   <h1>Candidature</h1>
+   <center>
+    <span class="badge badge-secondary" style="margin-top: 20px"><h2>Candidature</h2></span></h1>
+   </center>
    <div class="container" style="margin-top: 60px ">
     <div class="row">
 
@@ -50,36 +52,41 @@
                                     <th>Série de bac</th>
                                     <th>Relevé bac</th>
                                     <th>Année bac</th>
+                                    <th>Concours</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($candidats as $candidat)
                                 <tr>
-                                    <td>{{ $candidat->user->id}}</td>
-                                    <td>{{ $candidat->user->name}}</td>
-                                    <td>{{ $candidat->user->email}}</td>
+                                    <td>{{ $candidat->user->id }}</td>
+                                    <td>{{ $candidat->user->name }}</td>
+                                    <td>{{ $candidat->user->email }}</td>
                                     <td>{{ $candidat->seriebac }}</td>
                                     <td>
-                                        <a href="{{ route('admin.view_releve', $candidat->id) }}" class="btn btn-primary"><i class="fa fa-file"></i> Voir le relevé</a>
-
+                                        <a href="{{ route('admin.view_releve', $candidat->id) }}" class="btn btn-primary"><i class="fa fa-file"></i> Voir relevé</a>
                                     </td>
                                     <td>{{ $candidat->annebac }}</td>
+                                    <td>{{ $candidat->concours->titre }}</td>
                                     <td>
-                                        <form action="{{ route('admin.approve', $candidat->id) }}" method="POST" style="display: inline;">
-                                            @csrf
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Approuver</button>
-                                        </form>
-                                        <form action="#" method="POST" style="display: inline;">
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> Rejeter</button>
-                                        </form>
+                                        <div class="d-flex">
+                                            <form action="{{ route('admin.approve', $candidat->id) }}" method="POST" class="mr-2">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Approuver</button>
+                                            </form>
+                                            <form action="{{ route('admin.reject', $candidat->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> Rejeter</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
+
+
 
 
                 </div>

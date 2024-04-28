@@ -101,6 +101,7 @@ Route::get('/admin/view-releve/{id}',[AdminController::class, 'viewReleve'])->na
 Route::post('/admin/approve/{id}', [AdminController::class, 'approve'])->name('admin.approve');
 Route::post('/admin/reject/{id}', [AdminController::class, 'reject'])->name('admin.reject');
 
+Route::get('liste/concours',[HomeController::class, 'autreConcours'])->name('autre.concours');
 
 
 

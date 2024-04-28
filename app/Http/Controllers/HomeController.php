@@ -16,9 +16,11 @@ class HomeController extends Controller
     }
 
     public function liste(){
-        $concours = Concours::all();
+        $latestConcours = Concours::latest()->take(3)->get();
+        $otherConcours = Concours::latest()->skip(3)->get();
+
         $etablissements = Etablissement::all();
-        return view('home.liste', compact('concours','etablissements'));
+        return view('home.liste', compact('latestConcours','otherConcours','etablissements'));
     }
     public function voirconcours($id){
         $concours = Concours ::findOrFail($id);
@@ -29,6 +31,12 @@ class HomeController extends Controller
         $concours = Concours ::findOrFail($id);
         return view('home.postuler', compact('concours'));
 
+    }
+    public function autreConcours(){
+        $concours = Concours::all();
+        $etablissements = Etablissement::all();
+
+        return view ('home.autreConcours',compact('concours','etablissements'));
     }
 
 }

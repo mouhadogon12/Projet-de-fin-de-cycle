@@ -6,15 +6,13 @@
         <div class="container" data-aos="fade-up">
             <div class="section-title">
                 <h2>Concours Disponibles</h2>
-                <h3>Trouvez les <span>concours</span> actuellement ouvertes</h3>
-                <p>Identifiez un concours pour laquelle vous souhaitez soumettre votre candidature et affichez les
-                    détails.
-                </p>
+                <h3>Trouvez les <span>concours</span> actuellement ouverts</h3>
+                <p>Identifiez un concours pour lequel vous souhaitez soumettre votre candidature et affichez les détails.</p>
+                <a href="{{ route('autre.concours') }}" class="btn btn-primary mt-3" style="display: inline-block;">Voir plus de concours</a>
             </div>
-
         </div>
         <div class="row">
-            @foreach($concours as $concours)
+            @foreach($concours->take(3) as $concours)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <img class="card-img-top img-fluid" src="{{ asset('storage/images/' . $concours->image) }}" alt="Logo" style="object-fit: cover; height: 200px;">

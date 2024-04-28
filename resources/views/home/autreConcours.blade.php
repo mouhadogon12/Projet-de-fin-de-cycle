@@ -8,10 +8,17 @@
   <title>Sen Concours</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <style>
+    .confirm-alert {
+        font-size: 16px;
+        padding: 20px;
+    }
+</style>
+
 
   <!-- Favicons -->
-  <link href="{{ asset('') }}assets/img/favicon.png" rel="icon">
-  <link href="{{ asset('') }}assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="{{ asset('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i') }}" rel="stylesheet">
@@ -41,55 +48,53 @@
 
   <!-- ======= Header ======= -->
   @include('home.header')
+  <main id="main">
 
-  <section id="about" class="about section-bg">
-    <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-            <h2  style="margin-top: 40px">
-                {{ $concours->titre }}
-            </h2>
-           {{-- <h3>APPEL A CANDIDATURE ADMISSION LICENCE COMMERCE ET DISTRIBUTION</h3>
-                                <h3 style="font-weight: 300">Frais dossier: <span>10000 FCFA</span>
-                                        </h3>
-                            <h4>
-                <span class="badge bg-primary text-white">Sélection de dossier</span>
-            </h4>
-                        </div> --}}
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up" style="margin-top: 40px">
+            <center>
+                <h2>Liste des concours</h2>
+            </center>
 
 
+            @foreach($concours as $concours)
+            <div class="col-md-12">
+                <div class="icon-box decorate" data-aos="fade-up" data-aos-delay="100">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img  class="img-fluid rounded-start" style="object-fit: cover;" src="{{ asset('storage/images/' . $concours->image) }}" alt="Logo">
+                        </div>
+                        <div class="col-md-9">
+                            <h3 class="title"><a href="{{ route('concours.voir',$concours->id) }}">{{ $concours->titre }}</a></h3>
+                            <p class="description"><strong class="h5">Date d'ouverture:</strong> {{ $concours->date_debutIns }}</p>
+                            <p class="description"><strong class="h5">Date Limite:</strong> {{ $concours->date_limiteIns }}</p>
 
-        <div class="row bg-white pt-3">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-                <img  class="img-fluid rounded-start" style="object-fit: cover;" src="{{ asset('storage/images/' . $concours->image) }}" alt="Logo">
 
-            </div>
-            <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
-                data-aos-delay="100">
-                <h3>Clôture des inscriptions :
-                    <span>{{ $concours->date_limiteIns }}</span></h3>
-                <ul>
+                            <p><h4>lien utile</h4><a href="{{ $concours->lien }}">{{ $concours->lien }}</a></p>
+                            <div class="row">
+                                <div class="col-12">
+                                    <hr>
+                                </div>
+                                <div class="col-12">
+                                    <p class="description">{{ Str::limit($concours->description, 100) }}</p>
 
-                                                                        <li>
-                            <div class="d-grid gap-2" style="width: 50%; margin-left: 130px">
-                                <a href="{{ route('candidater.id',$concours->id) }}"
-                                    class="btn btn-primary">Postuler a ce concours</a>
+                                </div>
+                                <div class="col-12 d-flex justify-content-end">
+                                    <a href="{{ route('concours.voir',$concours->id) }}" class="btn btn-lg btn-secondary">En savoir plus</a>
+                                </div>
                             </div>
-                        </li>
-                                        </ul>
-
-            </div>
-            <div class="col-lg-12 pt-4 pt-lg-0 content d-flex flex-column justify-content-center">
-                <div class="blockquote">
-                    <p class="fst-italic">
-                       {{ $concours->description }}
-                    </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endforeach
 
-    </div>
-</section>
+
+        </div>
+        </section>
+    </main>
+
+
 
   <!-- ======= Hero Section ======= -->
 
@@ -177,6 +182,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
+
 
 </body>
 
