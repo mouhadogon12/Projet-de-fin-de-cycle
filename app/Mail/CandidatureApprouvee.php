@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Inscription;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -20,7 +21,7 @@ class CandidatureApprouvee extends Mailable
      *
      * @return void
      */
-    public function __construct($candidat)
+    public function __construct(Inscription $candidat)
     {
         $this->candidat = $candidat;
     }
@@ -42,7 +43,7 @@ class CandidatureApprouvee extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.candidature-approuvee',
         );
     }
 
@@ -60,7 +61,7 @@ class CandidatureApprouvee extends Mailable
     public function build()
     {
         return $this->view('emails.candidature-approuvee')
-                    ->subject('Votre candidature a été approuvée')
-                    ->from('konemouh1209@gmail.com');
+                    ->subject('Votre candidature a été approuvée');
+
     }
 }

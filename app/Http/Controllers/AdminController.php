@@ -61,7 +61,7 @@ public function approve($id)
     // Envoyer un e-mail au candidat
     $candidature = Inscription::findOrFail($id);
     $candidat = $candidature->user;
-    Mail::to($candidat->email)->send(new CandidatureApprouvee($candidat));
+    Mail::to($candidat->user->email)->send(new CandidatureApprouvee($candidat));
 
     // Autres opérations si nécessaire
 
