@@ -22,6 +22,8 @@
 
               @else
                   <li><a class="getstarted scrollto" href="{{ route('register') }}">S'inscrire</a></li>
+                  <li><a class="getstarted scrollto" href="{{ route('login') }}">Se connecter</a></li>
+
               @endauth
 
       @endif

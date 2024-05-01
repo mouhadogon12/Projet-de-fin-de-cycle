@@ -49,10 +49,11 @@
                                     <th>No</th>
                                     <th>Nom</th>
                                     <th>Email</th>
-                                    <th>Série de bac</th>
+                                    <th>Série</th>
                                     <th>Relevé bac</th>
                                     <th>Année bac</th>
                                     <th>Concours</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -68,15 +69,28 @@
                                     </td>
                                     <td>{{ $candidat->annebac }}</td>
                                     <td>{{ $candidat->concours->titre }}</td>
+                                    <td>{{ $candidat->status }}</td>
+
+
                                     <td>
                                         <div class="d-flex">
-                                            <form action="{{ route('admin.approve', $candidat->id) }}" method="POST" class="mr-2">
+                                            {{-- <form action="{{ route('admin.approve',$candidat->id) }}" method="POST" class="mr-2">
                                                 @csrf
                                                 <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Approuver</button>
-                                            </form>
-                                            <form action="{{ route('admin.reject', $candidat->id) }}" method="POST">
+                                            </form> --}}
+
+                                            <form action="{{ route('admin.approve',$candidat->id) }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> Rejeter</button>
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-times"></i>Approuve</button>
+                                            </form>
+
+                                            <form action="{{ route('admin.reject',$candidat->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i>Rejeter</button>
+                                            </form>
+                                            <form action="#" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary"><i class="fa fa-times"></i>Mail</button>
                                             </form>
                                         </div>
                                     </td>

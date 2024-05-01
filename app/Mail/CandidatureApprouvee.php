@@ -21,7 +21,7 @@ class CandidatureApprouvee extends Mailable
      *
      * @return void
      */
-    public function __construct(Inscription $candidat)
+    public function __construct($candidat)
     {
         $this->candidat = $candidat;
     }
@@ -43,7 +43,7 @@ class CandidatureApprouvee extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.candidature-approuvee',
+            view: 'email.notification',
         );
     }
 
@@ -60,8 +60,9 @@ class CandidatureApprouvee extends Mailable
 
     public function build()
     {
-        return $this->view('emails.candidature-approuvee')
-                    ->subject('Votre candidature a été approuvée');
+        return $this->subject('Votre candidature a été approuvée')
+        ->view('email.notification');
+       // ->with(['candidat' => $this->candidat]);
 
     }
 }

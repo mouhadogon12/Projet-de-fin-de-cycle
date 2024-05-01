@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('releve_bac');
             $table->date('date_Naissance');
             $table->string('lieu_Naissance');
+            $table->string('status')->nullable(); // Ajoutez cette ligne pour la colonne d'approbation
 
             $table->integer('annebac');
             $table->timestamps();

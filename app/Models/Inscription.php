@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inscription extends Model
 {
-    protected $fillable = ['num_cni','annebac','ecole','releve_bac','seriebac','date_inscription','concours_id','user_id','date_Naissance','lieu_Naissance','code_postal','nationalite'];
+    protected $fillable = ['num_cni','annebac','ecole','releve_bac','seriebac','date_inscription','concours_id','user_id','date_Naissance','lieu_Naissance','code_postal','nationalite','status'];
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -70,7 +70,7 @@
     </div>
 @endif
 
-                <h2>Candidater</h2>
+<span class="badge badge-secondary" style="margin-top: 20px"><h2>Candidater</h2></span>
 
             </div>
 
@@ -128,12 +128,12 @@
              <label for="nationalite">Nationnalite</label>
              <select class="form-select" id="nationalite" name="nationalite" required>
                  <option value="">Votre nationalite</option>
-                 <option value="Guineene">Guinee</option>                    <!-- Ajoutez d'autres options au besoin -->
+                 <option value="Guineene">Guineene</option>                    <!-- Ajoutez d'autres options au besoin -->
                  <option value="Mauritanienne">Mauritanie</option>                    <!-- Ajoutez d'autres options au besoin -->
-                 <option value="Gambiene">Mauritanie</option>
-                 <option value="Senegalaise">Senegal</option>
-                 <option value="Maliene">Mali</option>
-                 <option value="Marocaine">Maroc</option>                    <!-- Ajoutez d'autres options au besoin -->
+                 <option value="Gambiene">Mauritanienne</option>
+                 <option value="Senegalaise">Senegalaise</option>
+                 <option value="Maliene">Maliene</option>
+                 <option value="Marocaine">Marocaine</option>                    <!-- Ajoutez d'autres options au besoin -->
                  <!-- Ajoutez d'autres options au besoin -->
              </select>
             </div>

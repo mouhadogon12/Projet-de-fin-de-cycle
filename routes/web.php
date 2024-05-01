@@ -98,7 +98,8 @@ Route::get('/candidature/gestion',[AdminController::class, 'candidature'])->name
 
 Route::get('/admin/view-releve/{id}',[AdminController::class, 'viewReleve'])->name('admin.view_releve');
 
-Route::post('/admin/approve/{id}', [AdminController::class, 'approve'])->name('admin.approve');
+Route::get('/admin/approve/{id}', [InscriptionController::class, 'approve'])->name('admin.approve');
+
 Route::post('/admin/reject/{id}', [AdminController::class, 'reject'])->name('admin.reject');
 
 Route::get('liste/concours',[HomeController::class, 'autreConcours'])->name('autre.concours');

@@ -8,6 +8,8 @@ use App\Models\Concours;
 use App\Models\Inscription;
 use App\Mail\CandidatureApprouvee;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\NotificationMail;
+
 
 use Illuminate\Http\Request;
 
@@ -59,13 +61,39 @@ public function approve($id)
     // Logique pour approuver la candidature avec l'ID donné
 
     // Envoyer un e-mail au candidat
-    $candidature = Inscription::findOrFail($id);
-    $candidat = $candidature->user;
-    Mail::to($candidat->user->email)->send(new CandidatureApprouvee($candidat));
+   //$candidature = Inscription::findOrFail($id);
+   //$candidat = $candidature->user;
+//    try {
+//     Mail::to($candidat->user->email)->send(new CandidatureApprouvee($candidat));
+//     // Succès : E-mail envoyé
+// } catch (\Exception $e) {
+//     // Gestion des erreurs : échec de l'envoi de l'e-mail
+//     // Log $e->getMessage() ou renvoyer un message d'erreur à l'administrateur
+// }
+
+// Autres actions après l'approbation de la candidature
 
     // Autres opérations si nécessaire
 
-    return redirect()->back()->with('success', 'Candidature approuvée avec succès. Un e-mail a été envoyé au candidat.');
+   // return redirect()->back()->with('success', 'Candidature approuvée avec succès. Un e-mail a été envoyé au candidat.');
+
+   //$user = auth()->user(); // Obtenez l'utilisateur connecté ou tout autre utilisateur de votre système
+
+   // Envoyer l'e-mail
+ //  Mail::to($user->email)->send(new NotificationMail($user));
+ // Approbation du candidat
+ $candidat = Inscription::findOrFail($id);
+ $candidat->status ='Approuvee';
+ $candidat->save();
+
+ // Envoi de l'e-mail au candidat
+
+
+ // Redirection ou autre logique
+
+  // return "E-mail envoyé avec succès";
+      return redirect()->back();
+
 }
 
 

@@ -36,7 +36,10 @@ return redirect()->back()->with('error', 'Vous avez déjà postulé à ce concou
         'releve_bac' => 'required|file',
         'date_Naissance' =>'required|date',
         'lieu_Naissance' =>'required|string',
-        'nationalite' =>'required|string'
+        'nationalite' =>'required|string',
+
+
+
 
 
     ]);
@@ -54,6 +57,8 @@ return redirect()->back()->with('error', 'Vous avez déjà postulé à ce concou
     $candidature->lieu_Naissance = $validatedData['lieu_Naissance'];
     $candidature->date_Naissance = $validatedData['date_Naissance'];
     $candidature->code_postal = $validatedData['code_postal'];
+    $candidature->status = "en traitement";
+
 
 
 
@@ -105,6 +110,18 @@ public function dossiers()
 
     // Passer les dossiers de candidature à une vue pour les afficher
     return view('home.dossierCandidat', compact('candidatures'));
+}
+
+public function approve($id)
+{
+   
+ $candidat = Inscription::findOrFail($id);
+ $candidat->status ='Approuvee';
+ $candidat->save();
+
+
+      return redirect()->back();
+
 }
 
 
